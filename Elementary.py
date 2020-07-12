@@ -66,3 +66,6 @@ for x_1 in nums:
         product = x_1 * x_2
         print(str(x_1) +"*" + str(x_2) + "=" + str(product))
 
+# 8: Write a program that prints all prime numbers
+# Skipping this program. Don't want to overload my computer.
+
