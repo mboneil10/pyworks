@@ -208,3 +208,97 @@ def digits(number):
 
 # test the example
 print(digits(2342))
+
+# 15: Write functions that add, subtract, and multiply two numbers in their digit-list representation (and return a new digit list)
+
+# Make lists the same length to help with addition, subtraction, and multiplication
+def setup(list1, list2):
+    missing_indices = 0
+    # deal with lists of different lengths
+    if len(list1) < len(list2):
+        # add zeros to the beginning of list1 so lists are the same length
+        missing_indices = len(list2) - len(list1)
+        zeros = [0] * missing_indices
+        list1 = zeros + list1
+    elif len(list1) > len(list2):
+        # add zeros to the beginning of list2 so lists are the same length
+        missing_indices = len(list1) - len(list2)
+        zeros = [0] * missing_indices
+        list2 = zeros + list2
+    return list1, list2
+
+def add(list1, list2):
+    next_digit = 0
+    sum = 0
+    list1, list2 = setup(list1, list2)
+    list3 = [0] * (len(list1))
+    index = len(list1) - 1
+    while index > -1:
+        sum = list1[index] + list2[index]
+        if sum > 9:
+            list3[index] = sum % 10
+            next_digit = (sum - list3[index]) % 9
+            list1[index - 1] = list1[index - 1] + next_digit
+        else:
+            list3[index] = sum
+        index = index - 1
+    return list3
+
+# test input
+print(add([1, 7, 5],[2, 4, 6]))
+print(add([1, 0, 0], [2, 0]))
+
+# TODO: fix the neg variable
+def sub(list1, list2):
+    # this should only instantiate once
+    neg = False
+    next_digit = 0
+    total = 0
+    if len(list1) < len(list2):
+        # total is negative
+        neg = True
+        list1, list2 = setup(list2, list1)
+    else:
+        list1, list2 = setup(list1, list2)
+    list3 = [0] * (len(list1))
+    index = len(list1) - 1
+    while index > -1:
+        total = list1[index] - list2[index]
+        # produces a negative result, need to go to the left for more digits
+        if total < 0:
+            # carry the one
+            if list1[index - 1] - 1 >= 0:
+                list1[index - 1] = list1[index - 1] - 1
+                list1[index] = list1[index] + 10
+                return sub(list1, list2)
+            # total is negative
+            neg == True
+        list3[index] = total
+        index = index - 1
+    if neg == False:
+        return list3
+    else:
+        return (-num for num in list3)
+
+# test input
+# regular subtraction
+# print(sub([2, 2], [1, 0]))
+# carry the 1 -- need to expand to the left
+# print(sub([1, 0, 0], [2, 0]))
+# negative total
+print(sub([2, 0], [1, 0, 0]))
+
+def multiply(list1, list2):
+    next_digit = 0
+    product = 0
+    list1, list2 = setup(list1, list2)
+    list3 = [0] * (len(list1))
+    index = len(list1) - 1
+    while index > -1:
+        product = list1[index] * list2[index]
+        if product > 9:
+            # fill in
+        else:
+            list3[index] = product
+        index = index - 1
+    return list3
