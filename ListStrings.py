@@ -302,3 +302,47 @@ def multiply(list1, list2):
             list3[index] = product
         index = index - 1
     return list3
+
+# 16 - 18: Skipped
+# 19: Write a function that takes a list of strings and prints them one per line, in a rectangular frame.
+
+def star_frame(list):
+    # determine the length by finding the longest string in the list.
+    length = longest_string(list)
+    width = len(list)
+    # append space chars to strings that are smaller than longest string length.
+    spaced_list = spacer(list, length)
+    frame(length, width, spaced_list)
+
+def longest_string(list):
+    index = 0
+    longest = 0
+    str_length = len(list[index])
+    while index < len(list):
+        if str_length > longest:
+            longest = str_length
+        index = index + 1
+    return longest
+
+def spacer(list, longest):
+    index = 0
+    while index < len(list):
+        str_length = len(list[index])
+        if str_length < longest:
+            num_spaces = longest - str_length
+            list[index] = list[index] + ' ' * num_spaces
+        index = index + 1
+    return list
+
+def frame(length, width, list):
+    # first line is all stars
+    print('*' * (length + 2))
+    # lines after and before the last one have a star before and after the string
+    for item in list:
+        print('*' + str(item) + '*')
+    # last string is full of stars
+    print('*' * (length + 2))
+
+# test input
+star_frame(['bananas', 'orange', 'cherry'])
+star_frame(['Hello', 'World', 'this','is', 'a', 'box'])
