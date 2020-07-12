@@ -69,3 +69,50 @@ for x_1 in nums:
 # 8: Write a program that prints all prime numbers
 # Skipping this program. Don't want to overload my computer.
 
+# 9: Write a guessing game where the user has to guess a secret number
+# After every guess the program tells the user whether their number was too large or too small.
+# At the end the number of tries needed should be printed.
+# It counts only as one try if they input the same number multiple times consecutively.
+secret_number = random.randrange(0, 10)
+tries = 0
+guesses = []
+discovered = False;
+guess = input("Please enter a guess for my secret number")
+
+while discovered == False:
+    # only counts as one try if they input the same number multiple times
+    if int(guess) not in guesses:
+        guesses.append(int(guess))
+        tries = tries + 1
+    if int(guess) > secret_number:
+        guess = input("Too large, try again")
+    elif int(guess) < secret_number:
+        guess = input("Too small, try again")
+    else:
+        discovered = True
+print("You guessed my secret number " + str(secret_number) + "!")
+print("Number of tries: " + str(tries))
+
+# 10: Write a program that prints the next 20 leap years
+num = 0
+leap_year = 2020 # this year is a leap year.
+while num < 20:
+    num = num + 1
+    leap_year = leap_year + 4
+    print("leap year " + str(num) + ": " + str(leap_year))
+
+# 11: Write a program that computes the sum of an alternating series where each
+# element of the series is an expression of the form
+# ((-1)^{k+1})/(2*k-1) for each value of k from 1 to a million, multiplied by 4
+
+k = 1
+numerator = 1
+denominator = 1
+sum = 0
+
+while k < 1000001:
+    numerator = (-1)**(k+1)
+    denominator = (2*k-1)
+    sum = sum + numerator/denominator
+    k = k + 1
+print(str(4*sum))
