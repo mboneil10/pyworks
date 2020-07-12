@@ -188,3 +188,13 @@ def rotate(list, k):
 # test input
 print(rotate([1, 2, 3, 4, 5, 6], 2))
 print(rotate([1, 2, 3, 4, 5, 6], 8))
+
+# 13: Write a function that computes the list of the first 100 Fibonacci numbers. First two numbers are 1 and 1.
+# The (n+1)th Fib number can be computed by adding the nth and the (n-1)th numbers together.
+def fib(n):
+    if n <= 1:
+        return n
+    else:
+        return fib(n-1) + fib(n-2)
+
+# wasn't able to compute the list of the first 100 Fib numbers because of PyCharm.
