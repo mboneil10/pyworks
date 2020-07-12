@@ -198,3 +198,13 @@ def fib(n):
         return fib(n-1) + fib(n-2)
 
 # wasn't able to compute the list of the first 100 Fib numbers because of PyCharm.
+
+# 14: Write a function that takes a number and returns a list of its digits. for 2342 it should return [2, 3, 4, 2]
+def digits(number):
+    digits = []
+    for digit in str(number):
+        digits.append(digit)
+    return digits
+
+# test the example
+print(digits(2342))
